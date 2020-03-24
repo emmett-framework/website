@@ -1,5 +1,7 @@
 FROM python:3.8-alpine
 
+RUN apk add --no-cache libstdc++
+
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app
