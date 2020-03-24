@@ -18,7 +18,7 @@ def _build_filepath(version, name, parent=None):
     return os.path.join(*args)
 
 
-@cache('docs_versions', duration=60 * 60)
+@cache('docs_versions', duration=60 * 60 * 24)
 def get_versions():
     versions = []
     for name in os.listdir(_docs_path):
@@ -27,7 +27,7 @@ def get_versions():
     return sorted(versions, reverse=True)
 
 
-@cache('docs_lastv', duration=60 * 10)
+@cache('docs_lastv', duration=60 * 60 * 24)
 def get_latest_version():
     latest_version = max([
         float(".".join(v.split(".")[:-1])) for v in get_versions()

@@ -52,7 +52,7 @@ async def tree(version):
 
 
 @docs.route("/<str:version>/<str:key>(/<str:subkey>)?")
-@cache.response(query_params=False, language=False, duration=60 * 30)
+@cache.response(query_params=False, language=False, duration=60 * 60)
 async def page(version, key, subkey):
     if version == 'latest':
         vlast = get_latest_version()
