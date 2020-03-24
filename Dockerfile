@@ -4,7 +4,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY requirements.txt /usr/src/app
 RUN apk add --no-cache --virtual build-deps \
-    g++ musl-dev make git libffi-dev libuv-dev && \
+    g++ musl-dev make git libffi-dev libuv-dev openssl-dev && \
     pip install -r /usr/src/app/requirements.txt && \
     apk del build-deps
 
