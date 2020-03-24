@@ -19,4 +19,4 @@ COPY build/dist/docs app/docs
 EXPOSE 8000
 
 ENTRYPOINT [ "emmett" ]
-CMD [ "serve", "--no-access-log", "--max-queue", "512" ]
+CMD [ "serve", "--no-access-log", "--max-concurrency", "512" ]
