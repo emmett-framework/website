@@ -1,7 +1,7 @@
 stages:
   - dist
   - build
-  # - deploy
+  - deploy
 
 dist:
   stage: dist
@@ -34,17 +34,17 @@ build_and_publish:
     refs:
       - master
 
-# deploy:
-#   stage: deploy
-#   image: ${CI_REGISTRY}/devops/k8s-deploy/csr1:latest
-#   variables:
-#     GIT_STRATEGY: none
-#     CI_APPLICATION_TAG: $CI_COMMIT_SHORT_SHA
-#   script:
-#     - auto_deploy deploy_web
-#   environment:
-#     name: production
-#     url: https://emmett.sh
-#   only:
-#     refs:
-#       - master
+deploy:
+  stage: deploy
+  image: ${CI_REGISTRY}/devops/k8s-deploy/csr1:latest
+  variables:
+    GIT_STRATEGY: none
+    CI_APPLICATION_TAG: $CI_COMMIT_SHORT_SHA
+  script:
+    - auto_deploy deploy_web
+  environment:
+    name: production
+    url: https://emmett.sh
+  only:
+    refs:
+      - master
