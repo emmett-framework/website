@@ -1,0 +1,94 @@
+header {
+    background-color: #ffffffe6;
+}
+
+footer.nav-footer {
+    background-color: #ffffffe6;
+}
+
+code {
+    font-family: "Source Code Pro", monospace;
+}
+
+.font-os {
+    font-family: "Open Sans", sans-serif;
+}
+
+.font-ssp {
+    font-family: "Source Sans Pro", monospace;
+}
+
+.font-rlw {
+    font-family: "Raleway", sans-serif;
+}
+
+.home-logo img {
+    width: 95%;
+    max-width: 720px;
+}
+
+.home-block pre code {
+    font-size: 0.825rem;
+    margin-top: -3.5rem;
+    margin-bottom: -2.5rem;
+}
+
+.terminal {
+    text-align: left;
+    width: 100%;
+    display: inline-block;
+    border-radius: 4px;
+    overflow: overlay;
+}
+
+.terminal .top-bar {
+    height: 30px;
+    border-radius: 4px 4px 0 0;
+}
+
+.terminal .dots {
+    margin: 1px 10px;
+}
+
+.terminal .dots .dot {
+    height: 8px;
+    width: 8px;
+    display: inline-block;
+    border-radius: 50%;
+}
+
+.terminal.light {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.terminal.light .top-bar {
+    border-top: thin solid #eaeae9;
+    border-bottom: thin solid #dfdfde;
+    background: #ebebeb;
+}
+
+.terminal.light .dots .dot {
+    background-color: #fff;
+}
+
+.terminal.dark {
+    background-color: #2A4365;
+    border: 1px solid #4A5568;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+}
+
+.terminal.dark .top-bar {
+    border-top: thin solid #4A5568;
+    border-bottom: thin solid #4A5568;
+    background: #1A202C;
+}
+
+.terminal.dark .dots .dot {
+    background-color: #EBF4FF;
+}
+
+.hljs {
+    background-color: transparent !important;
+}

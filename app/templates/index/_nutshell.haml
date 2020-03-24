@@ -1,0 +1,31 @@
+.home-block.py-6
+    .container.flex.flex-wrap.w-full.mx-auto
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .terminal.dark
+                .top-bar
+                    .dots
+                        .dot
+                        .dot
+                        .dot
+                .content
+                    %pre
+                        %code{language: "python"}
+                            = code_blocks.nutshell
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h5.hint.w-full.mt-1.mb-1.flex.font-rlw.font-semibold.text-sm.text-left.text-indigo-600.uppercase
+                    Write elegant code
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Focus on your product
+            .flex.flex-wrap
+                %p.w-full.mb-4.font-light
+                    You should spend more time on your product rather than the underlying framework.
+                %p.w-full.mb-4.font-light
+                    Emmett is
+                    %em the framework for inventors
+                    since is designed to simplify your development process,
+                    with a syntax made to be simple, easy to learn and understand.
+                %p.w-full.font-light
+                    Don't waste your time between routers and uncomfortable patterns:
+                    every time you write down a route for your application,
+                    everything is just clearly stated in front of your eyes.

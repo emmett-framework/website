@@ -1,0 +1,50 @@
+stages:
+  - dist
+  - build
+  # - deploy
+
+dist:
+  stage: dist
+  image: python:3.7-alpine
+  artifacts:
+    paths:
+      - build/dist/
+  before_script:
+    - apk add --no-cache git
+    - pip install pyyaml
+  script:
+    - python build/docs.py
+  only:
+    refs:
+      - master
+
+build_and_publish:
+  stage: build
+  image: quay.io/buildah/stable:latest
+  variables:
+    BUILDAH_FORMAT: docker
+    CONTAINER_IMAGE: $CI_REGISTRY_IMAGE
+  before_script:
+    - buildah login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - buildah --storage-driver=vfs bud --tag $CONTAINER_IMAGE:$CI_COMMIT_SHORT_SHA
+    - buildah --storage-driver=vfs push $CONTAINER_IMAGE:$CI_COMMIT_SHORT_SHA
+    - buildah --storage-driver=vfs push $CONTAINER_IMAGE:$CI_COMMIT_SHORT_SHA $CONTAINER_IMAGE:latest
+  only:
+    refs:
+      - master
+
+# deploy:
+#   stage: deploy
+#   image: ${CI_REGISTRY}/devops/k8s-deploy/csr1:latest
+#   variables:
+#     GIT_STRATEGY: none
+#     CI_APPLICATION_TAG: $CI_COMMIT_SHORT_SHA
+#   script:
+#     - auto_deploy deploy_web
+#   environment:
+#     name: production
+#     url: https://emmett.sh
+#   only:
+#     refs:
+#       - master

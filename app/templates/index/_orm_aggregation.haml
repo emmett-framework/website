@@ -1,0 +1,30 @@
+.home-block.py-6.border-t.border-gray-400.bg-gray-200
+    .container.flex.flex-wrap.w-full.mx-auto
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h5.hint.w-full.mt-1.mb-1.flex.font-rlw.font-semibold.text-sm.text-left.text-indigo-600.uppercase
+                    Count what matters
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Aggregation made easy
+            .flex.flex-wrap
+                %p.w-full.mb-4.font-light
+                    Just forget underscore variables and raw sql strings.
+                %p.w-full.mb-4.font-light
+                    Emmett comes with a powerful
+                    %a.big{href: "#"}
+                        query interface
+                    that lets you aggregate your data using just the Python language.
+                %p.w-full.font-light
+                    Need to count events happening in the same location for a specific year?
+                    Emmett lets you do that in just some few elegant lines.
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .terminal.dark
+                .top-bar
+                    .dots
+                        .dot
+                        .dot
+                        .dot
+                .content
+                    %pre
+                        %code{language: "python"}
+                            = code_blocks.orm_aggregation

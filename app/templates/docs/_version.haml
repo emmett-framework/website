@@ -1,0 +1,5 @@
+:javascript
+    var docs_url = "{{ =url('.tree', ':VERSION:') }}"
+    var versionSelected = function(e) {
+        window.location.href = docs_url.replace(':VERSION:', e.value)
+    }

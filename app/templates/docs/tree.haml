@@ -1,0 +1,39 @@
+- page_title = "Documentation"
+- meta_description = "Official Emmett framework Documentation"
+
+- extend "layout.haml"
+
+- block header
+- include "docs/_header.haml"
+- end
+
+- block footer
+- include "docs/_version.haml"
+- end
+
+.py-6
+    .flex.flex-wrap.mx-auto.font-ssp{class: "port:w-full port:px-12 land:w-4/5"}
+        %h1.mb-6
+            Welcome to Emmett
+        %p.ssp.mb-4.text-lg
+            The documentation is divided into different parts.
+            We recommend you to read the
+            %em Getting Started
+            chapter to have a good introduction to the framework.
+            Besides this
+            %em quick start
+            there's also a more detailed tutorial that shows how to create
+            a small but complete application with Emmett.
+        %p.ssp.mb-6.text-lg
+            After these introductive parts the documentation dive into
+            more specific aspects of Emmett.
+        %ul.list-disc.w-full.font-os
+            - for page in tree
+                %li.ml-6
+                    %a{href: "{{ =page[1] }}"}
+                        = page[0]
+                %ul.list-disc.ml-6
+                    - for sub in page[2]
+                        %li.ml-6
+                            %a{href: "{{ =sub[1] }}"}
+                                = sub[0]

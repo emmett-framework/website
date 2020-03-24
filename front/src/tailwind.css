@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply font-light;
+}
+
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+a {
+    @apply font-normal text-blue-700;
+}
+
+code {
+    @apply mb-4 text-sm;
+}
+
+pre code {
+    @apply block m-0 px-2 py-2 bg-blue-900 rounded-md text-gray-100 text-sm overflow-x-auto overflow-y-hidden;
+}
+
+.docs h1 {
+    @apply mb-6;
+}
+
+.docs h2 {
+    @apply pt-16 mb-6;
+}
+
+.docs h3 {
+    @apply pt-6 mb-4;
+}
+
+.docs ul {
+    @apply list-disc mb-4 -mt-4;
+}
+
+.docs ul li {
+    @apply ml-10;
+}
+
+.docs p {
+    @apply mb-4;
+}
+
+.docs table {
+    @apply mb-4;
+}
+
+.docs table th {
+    @apply p-2 font-normal text-left;
+}
+
+.docs table td {
+    @apply p-2 border-t border-gray-300;
+}
+
+.docs blockquote {
+    @apply bg-gray-100 border-gray-300 border-l-8 px-4 py-6 rounded-r-md mb-4;
+}
+
+.docs blockquote p {
+    @apply mb-0;
+}
+
+.docs code {
+    @apply bg-gray-200 px-2 py-1 rounded;
+}
+
+.docs pre code {
+    @apply mb-4 px-4 py-6 bg-blue-900;
+}

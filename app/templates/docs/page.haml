@@ -1,0 +1,23 @@
+- page_title = title
+
+- extend "layout.haml"
+
+- block header
+- include "docs/_header.haml"
+- end
+
+- block footer
+- include "docs/_footer.haml"
+- include "docs/_version.haml"
+- end
+
+.py-6
+    .w-full.flex.flex-wrap.px-6.pb-16
+        %div.docs.font-ssp.text-lg{class: "port:w-full land:w-4/5 land:pr-3"}
+            = body
+        %div{class: "port:hidden land:w-1/5 land:pl-3"}
+            %ul{class: "fixed w-1/6"}
+                - for sub in sections
+                    %li
+                        %a{href: "{{ ='#' + sub[1] }}"}
+                            = sub[0]

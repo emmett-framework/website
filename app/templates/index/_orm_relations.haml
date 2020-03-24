@@ -1,0 +1,33 @@
+.home-block.py-6.border-t.border-gray-400
+    .container.flex.flex-wrap.w-full.mx-auto
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .terminal.dark
+                .top-bar
+                    .dots
+                        .dot
+                        .dot
+                        .dot
+                .content
+                    %pre
+                        %code{language: "python"}
+                            = code_blocks.orm_relations
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h5.hint.w-full.mt-1.mb-1.flex.font-rlw.font-semibold.text-sm.text-left.text-indigo-600.uppercase
+                    Define your entities
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Relations in a breeze
+            .flex.flex-wrap
+                %p.w-full.mb-4.font-light
+                    Writing models and
+                    %a.big{href: "#"}
+                        relations
+                    in Emmett is fast and concise.
+                %p.w-full.mb-4.font-light
+                    Defining the entities involved in your application shouldn't be a pain.
+                    %br
+                    Emmet's ORM apis are designed to avoid you the hassle of writing cryptic code and
+                    to be perfectly readable even for databases
+                    %em amateurs.
+                %p.w-full.font-light
+                    Enjoy the elegance of your models and use your time to improve your product.

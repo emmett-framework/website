@@ -1,0 +1,16 @@
+{
+  "name": "emmett-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "tailwind": "tailwind build ./src/tailwind.css -c ./tailwind.config.js -o ./dist/tw.css",
+    "postcss": "postcss ./dist/tw.css > ./dist/tw.min.css"
+  },
+  "dependencies": {
+    "tailwindcss": "^1.2.0"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "postcss-cli": "^6.1.3"
+  }
+}

@@ -1,0 +1,30 @@
+.home-block.py-6.border-t.border-gray-400.bg-gray-200
+    .container.flex.flex-wrap.w-full.mx-auto
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h5.hint.w-full.mt-1.mb-1.flex.font-rlw.font-semibold.text-sm.text-left.text-indigo-600.uppercase
+                    Go asynchronous
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Enjoy sockets
+            .flex.flex-wrap
+                %p.w-full.mb-4.font-light
+                    Emmett is designed on top of latest
+                    %em asyncio
+                    Python technology.
+                %p.w-full.mb-4.font-light
+                    The whole request flow in Emmett is fully asynchronous, so you can easily take advantage
+                    of asynchronous and non-blocking code in your application flow.
+                %p.w-full.font-light
+                    Need to listen for latest time travels happening in your time? With Emmett you can do it
+                    in a few lines, without bothering about handling the parallelism.
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .terminal.dark
+                .top-bar
+                    .dots
+                        .dot
+                        .dot
+                        .dot
+                .content
+                    %pre
+                        %code{language: "python"}
+                            = code_blocks.async_code

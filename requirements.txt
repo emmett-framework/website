@@ -1,0 +1,4 @@
+emmett==2.0.0b1
+-e git+https://github.com/gi0baro/emmett-haml.git@09d1dddc13e0ebc390a46a16c16f1e84933dd6e3#egg=emmett-haml
+markdown2==2.3.8
+pygments==2.6.1

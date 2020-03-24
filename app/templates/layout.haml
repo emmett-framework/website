@@ -1,0 +1,63 @@
+- base_title = 'Emmett framework'
+- page_title = locals().get('page_title')
+- meta_title = locals().get('meta_title', '{} | {}'.format(page_title, base_title) if page_title else base_title)
+- meta_image = locals().get('meta_image')
+- meta_description = locals().get('meta_description')
+
+!!! 5
+%html{lang: "{{ =current.request.language or 'en' }}"}
+    %head
+        %meta{charset: "utf-8"}
+        %meta{name: "viewport", content: "width=device-width,initial-scale=1.0,maximum-scale=1.0"}
+
+        %title
+            = meta_title
+
+        %meta{property: "og:title", content: "{{ =meta_title }}"}
+        %meta{property: "og:type", content: "website"}
+        %meta{property: "og:site_name", content: "{{ =base_title }}"}
+
+        - if meta_description
+            %meta{name: "description", content: "{{ =meta_description }}"}
+            %meta{property: "og:description", content: "{{ =meta_description }}"}
+
+        - if meta_image
+            %meta{property: "og:image", content: "{{ =meta_image }}"}
+
+        %meta{name: "twitter:widgets:theme", content: "light"}
+
+        %link{href: "//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic", rel: "stylesheet", type:"text/css"}
+        %link{href: "//fonts.googleapis.com/css?family=Source+Code+Pro:400,700", rel: "stylesheet", type: "text/css"}
+        %link{href: "//fonts.googleapis.com/css?family=Raleway:600", rel: "stylesheet", type: "text/css"}
+        %link{href: "//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic", rel: "stylesheet", type: "text/css"}
+
+        -# %link{href: "//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.css", rel: "stylesheet", type: "text/css"}
+        -# %script{src: "//cdn.jsdelivr.net/docsearch.js/1/docsearch.min.js", type: "text/javascript"}
+
+        - include_static "css/lib.min.css"
+        - include_static "css/main.css"
+        - include_static "css/highlight.css"
+        - include_static "css/pygments.css"
+        - include_static "js/highlight.pack.js"
+
+        - block head
+        - end
+
+    %body.text-gray-900.font-os
+
+        %header.w-full.h-12.mt-0.py-2.fixed.top-0.z-10.border-b.border-gray-400
+            - block header
+            - include "_header.haml"
+            - end
+
+        .w-full.mt-12
+            -# .w-full
+            - block content
+            - include
+            - end
+
+        - block footer
+        - include "_footer.haml"
+        - end
+
+        - include "_analytics.haml"

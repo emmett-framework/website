@@ -1,0 +1,31 @@
+.home-block.py-6.border-t.border-gray-400
+    .container.flex.flex-wrap.w-full.mx-auto
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .terminal.dark
+                .top-bar
+                    .dots
+                        .dot
+                        .dot
+                        .dot
+                .content
+                    %pre
+                        %code{language: "python"}
+                            = code_blocks.templates
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h5.hint.w-full.mt-1.mb-1.flex.font-rlw.font-semibold.text-sm.text-left.text-indigo-600.uppercase
+                    Design your success
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Forget about templating syntax. Use Python
+            .flex.flex-wrap
+                %p.w-full.mb-4.font-light
+                    Emmett won't propose you a new templating language,
+                    with a different syntax and logic: you should not waste time on that.
+                %p.w-full.mb-4.font-light
+                    The
+                    %a.big{href: "#"}
+                        templating engine
+                    shipped with Emmett is indeed just pure Python code embedded in your templates,
+                    with some facilities added to the game.
+                %p.w-full.font-light
+                    Use the same language for both the back-end logic and the front-end one.

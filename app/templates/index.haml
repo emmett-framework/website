@@ -1,0 +1,77 @@
+- meta_title = "Emmett - the web framework for inventors"
+- meta_description = "Emmett is a full-stack Python web framework designed with simplicity in mind"
+- meta_image = ""
+- quickstart_url = url('docs.page', ['latest', 'quickstart'])
+
+- extend "layout.haml"
+
+.home-logo.w-full.mb-4.px-auto
+    %img.mx-auto{src: "https://github.com/emmett-framework/emmett/raw/master/artwork/logo-bwb-xb-xl.png"}
+
+- include "index/_nutshell.haml"
+- include "index/_async.haml"
+- include "index/_orm_relations.haml"
+- include "index/_orm_aggregation.haml"
+- include "index/_templates.haml"
+
+.home-block.py-6
+    .container.flex.flex-wrap.w-full.mx-auto
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Ready to go?
+            .flex.flex-wrap
+                %p.w-full.mb-2.font-light
+                    The easies way to install Emmett is from PyPI, using pip:
+                %code.mb-4.text-base
+                    > pip install emmett
+                %p.w-full.mb-2.font-light
+                    Then you may want to:
+                %ul.list-disc.font-light
+                    %li.ml-6
+                        Read the
+                        %a{href: "{{ =url('docs.tree', 'latest') }}"} documentation
+                    %li.ml-6
+                        %a{href: "https://github.com/emmett-framework/emmett"} Star and fork
+                        the project on Github
+                    %li.ml-6
+                        Add
+                        %a{href: "https://github.com/emmett-framework/emmett/issues"} issues and feature requests
+                    %li.ml-6
+                        Make your own
+                        %a{href: "{{ =url('docs.page', ['latest', 'extensions']) }}#building-extensions"} extensions
+
+
+        %div{class: "port:w-full land:w-1/2 px-6"}
+            .flex.flex-wrap
+                %h2.w-full.mt-1.mb-6.flex.font-ssp.font-light.text-3xl.text-blue-600
+                    Batteries included
+            .flex.flex-wrap
+                %ul.list-disc.font-light
+                    %li.ml-6
+                        Simple
+                        %a{href: "{{ =quickstart_url }}#routing"} routing system
+                    %li.ml-6
+                        Smooth
+                        %a{href: "{{ =url('docs.page', ['latest', 'orm']) }}"} ORM
+                        with integrated
+                        %a{href: "{{ =url('docs.page', ['latest', 'orm', 'migrations']) }}"} migrations engine
+                    %li.ml-6
+                        Elegant
+                        %a{href: "{{ =url('docs.page', ['latest', 'validations']) }}"} validation
+                        engine
+                    %li.ml-6
+                        Secure
+                        %a{href: "{{ =url('docs.page', ['latest', 'auth']) }}"} authentication system
+                    %li.ml-6
+                        Handy
+                        %a{href: "{{ =quickstart_url }}#creating-forms"} forms generation
+                    %li.ml-6
+                        Plain
+                        %a{href: "{{ =quickstart_url }}#languages-and-internationalization"} internationalisation engine
+                    %li.ml-6
+                        Friendly
+                        %a{href: "{{ =quickstart_url }}#rendering-the-output"} templating engine
+
+:javascript
+    hljs.initHighlightingOnLoad();
