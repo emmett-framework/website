@@ -1,0 +1,17 @@
+*.DS_Store
+*.pyc
+__pycache__
+
+*.sublime-*
+.venv
+.vscode
+
+build/dist
+build/tmp
+poetry.lock
+
+app/config/*.yml
+app/databases/*
+app/docs/*
+app/logs/*.log
+*.haml.html
