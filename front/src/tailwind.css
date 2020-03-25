@@ -23,11 +23,11 @@ a {
 }
 
 code {
-    @apply mb-4 text-sm;
+    @apply mb-4 text-sm font-normal;
 }
 
 pre code {
-    @apply block m-0 px-2 py-2 bg-blue-900 rounded-md text-gray-100 text-sm overflow-x-auto overflow-y-hidden;
+    @apply block m-0 px-2 py-2 bg-blue-900 rounded-md text-gray-100 text-sm font-normal overflow-x-auto overflow-y-hidden;
 }
 
 .docs h1 {
