@@ -1,4 +1,4 @@
-emmett==2.0.0b1
--e git+https://github.com/gi0baro/emmett-haml.git@09d1dddc13e0ebc390a46a16c16f1e84933dd6e3#egg=emmett-haml
+-e git+https://github.com/emmett-framework/emmett.git@5058aa8d105a4223e0b71b1f2a5cef86cad80015#egg=emmett
+-e git+https://github.com/gi0baro/emmett-haml.git@9c03df6f2cbf86a5f9fce4be6c5aeb73155dd741#egg=emmett-haml
 markdown2==2.3.8
 pygments==2.6.1
