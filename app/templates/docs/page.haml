@@ -2,6 +2,10 @@
 
 - extend "layout.haml"
 
+- block head
+- include "docs/_head.haml"
+- end
+
 - block header
 - include "docs/_header.haml"
 - end
@@ -9,6 +13,7 @@
 - block footer
 - include "docs/_footer.haml"
 - include "docs/_version.haml"
+- include "docs/_search.haml"
 - end
 
 .py-6

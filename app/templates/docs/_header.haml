@@ -3,8 +3,13 @@
         %a{href: "{{ =url('main.index') }}"}
             %img{src: "https://deneb.spaces.amira.io/emmett/artwork/logo-bwb-xb-sc.png"}
     .flex.flex-grow.justify-end
+        .relative.mr-4{class: "port:hidden"}
+            %input#docsearch.appearance-none.block.h-full.py-1.pl-8.pr-2.border.border-transparent.bg-gray-100.rounded-lg{class: "port:w-full land:w-64 focus:outline-none focus:border-gray-300 focus:bg-white"}
+            .pointer-events-none.absolute.inset-y-0.left-0.flex.items-center.px-2
+                %svg.h-4.w-4.fill-current{viewBox: "0 0 20 20"}
+                    %path{d: "M12.9 14.32a8 8 0 1 1 1.41-1.41l5.35 5.33-1.42 1.42-5.33-5.34zM8 14A6 6 0 1 0 8 2a6 6 0 0 0 0 12z"}
         .relative.mr-4
-            %select.appearance-none.block.pl-2.pr-8.py-1{class: "focus:outline-none", onchange: "versionSelected(this)"}
+            %select.appearance-none.block.pl-2.pr-8.py-1.bg-gray-100{class: "focus:outline-none", onchange: "versionSelected(this)"}
                 - for menu_version in versions
                     - if version == menu_version
                         %option{value: "{{ =menu_version }}", selected: ""}
