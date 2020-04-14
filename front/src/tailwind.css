@@ -18,6 +18,10 @@ h3 {
     @apply text-2xl;
 }
 
+h4 {
+    @apply text-xl;
+}
+
 a {
     @apply font-normal text-blue-700;
 }
@@ -40,6 +44,10 @@ pre code {
 
 .docs h3 {
     @apply pt-6 mb-4;
+}
+
+.docs h4 {
+    @apply pt-2 mb-4;
 }
 
 .docs ul {
