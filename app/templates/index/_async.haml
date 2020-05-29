@@ -15,7 +15,9 @@
                     The whole request flow in Emmett is fully asynchronous, so you can easily take advantage
                     of asynchronous and non-blocking code in your application flow.
                 %p.w-full.font-light
-                    Need to listen for latest time travels happening in your time? With Emmett you can do it
+                    Need to listen for latest time travels happening in your time? With Emmett you can
+                    %a.big{href: "{{ =url('docs.page', ['latest', 'websocket']) }}"}
+                        handle websockets
                     in a few lines, without bothering about handling the parallelism.
         %div{class: "port:w-full land:w-1/2 px-6"}
             .terminal.dark
