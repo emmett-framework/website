@@ -1,14 +1,17 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim
 
-RUN apk add --no-cache libstdc++
+WORKDIR /root
+RUN apt-get -qq update -y && apt-get -q install -y curl git
+RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
+ENV PATH /root/.poetry/bin:$PATH
+RUN poetry config virtualenvs.in-project true
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY requirements.txt /usr/src/app
-RUN apk add --no-cache --virtual build-deps \
-    g++ musl-dev make git libffi-dev libuv-dev openssl-dev && \
-    pip install -r /usr/src/app/requirements.txt && \
-    apk del build-deps
+RUN mkdir -p /usr/src/deps
+COPY pyproject.toml /usr/src/deps
+COPY poetry.lock /usr/src/deps
+WORKDIR /usr/src/deps
+RUN poetry install --no-dev
+ENV PATH /usr/src/deps/.venv/bin:$PATH
 
 WORKDIR /app
 
