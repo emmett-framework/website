@@ -5,7 +5,7 @@ import os
 from emmett import App
 from emmett.cache import Cache, RamCache
 from emmett_haml import Haml
-# from emmett_sentry import Sentry
+from emmett_sentry import Sentry
 
 app = App(__name__)
 
@@ -19,7 +19,7 @@ app.config.templates_auto_reload = True
 app.config.Sentry.dsn = os.environ.get('SENTRY_DSN', '')
 
 app.use_extension(Haml)
-# app.use_extension(Sentry)
+app.use_extension(Sentry)
 
 cache = Cache(ram=RamCache())
 

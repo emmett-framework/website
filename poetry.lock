@@ -17,6 +17,14 @@ version = ">=1.4.0,<1.5"
 
 [[package]]
 category = "main"
+description = "Python package for providing Mozilla's CA Bundle."
+name = "certifi"
+optional = false
+python-versions = "*"
+version = "2020.6.20"
+
+[[package]]
+category = "main"
 description = "Composable command line interface toolkit"
 name = "click"
 optional = false
@@ -59,20 +67,28 @@ websockets = ">=8.0,<9.0"
 
 [[package]]
 category = "main"
-description = ""
+description = "HAML syntax for Emmett templates"
 name = "emmett-haml"
 optional = false
-python-versions = "^3.7"
-version = "1.0.0.dev0"
+python-versions = ">=3.7,<4.0"
+version = "1.0.0"
 
 [package.dependencies]
-emmett = ">1.0"
-renoir-haml = "^1.0"
+emmett = ">=2,<3"
+renoir-haml = ">=1.0,<2.0"
 
-[package.source]
-reference = "9c03df6f2cbf86a5f9fce4be6c5aeb73155dd741"
-type = "git"
-url = "https://github.com/gi0baro/emmett-haml.git"
+[[package]]
+category = "main"
+description = "Sentry extension for Emmett framework"
+name = "emmett-sentry"
+optional = false
+python-versions = ">=3.7,<4.0"
+version = "0.1.0"
+
+[package.dependencies]
+emmett = ">=2.1.0"
+sentry-sdk = ">=0.17.1"
+
 [[package]]
 category = "main"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -273,6 +289,34 @@ renoir = ">=1.1,<2.0"
 
 [[package]]
 category = "main"
+description = "Python client for Sentry (https://sentry.io)"
+name = "sentry-sdk"
+optional = false
+python-versions = "*"
+version = "0.19.0"
+
+[package.dependencies]
+certifi = "*"
+urllib3 = ">=1.10.0"
+
+[package.extras]
+aiohttp = ["aiohttp (>=3.5)"]
+beam = ["apache-beam (>=2.12)"]
+bottle = ["bottle (>=0.12.13)"]
+celery = ["celery (>=3)"]
+chalice = ["chalice (>=1.16.0)"]
+django = ["django (>=1.8)"]
+falcon = ["falcon (>=1.4)"]
+flask = ["flask (>=0.11)", "blinker (>=1.1)"]
+pure_eval = ["pure-eval", "executing", "asttokens"]
+pyspark = ["pyspark (>=2.4.4)"]
+rq = ["rq (>=0.6)"]
+sanic = ["sanic (>=0.8)"]
+sqlalchemy = ["sqlalchemy (>=1.2)"]
+tornado = ["tornado (>=5)"]
+
+[[package]]
+category = "main"
 description = "An internationalization engine designed with simplicity in mind"
 name = "severus"
 optional = false
@@ -315,6 +359,19 @@ name = "typing-extensions"
 optional = false
 python-versions = "*"
 version = "3.7.4.3"
+
+[[package]]
+category = "main"
+description = "HTTP library with thread-safe connection pooling, file post, and more."
+name = "urllib3"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
+version = "1.25.10"
+
+[package.extras]
+brotli = ["brotlipy (>=0.6.0)"]
+secure = ["certifi", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "pyOpenSSL (>=0.14)", "ipaddress"]
+socks = ["PySocks (>=1.5.6,<1.5.7 || >1.5.7,<2.0)"]
 
 [[package]]
 category = "main"
@@ -361,13 +418,17 @@ python-versions = "*"
 version = "1.12.1"
 
 [metadata]
-content-hash = "ce7c3eab2f15a9a78e4daf8ef18cc62010fff23357fccf7e6635f952d4cdefa6"
+content-hash = "d2a53ef6c5c3f319eee980b7db1e74d7f9628c3c67601404a6059ae4fd3b786f"
 python-versions = "^3.7"
 
 [metadata.files]
 astroid = [
     {file = "astroid-2.4.2-py3-none-any.whl", hash = "sha256:bc58d83eb610252fd8de6363e39d4f1d0619c894b0ed24603b881c02e64c7386"},
     {file = "astroid-2.4.2.tar.gz", hash = "sha256:2f4078c2a41bf377eea06d71c9d2ba4eb8f6b1af2135bec27bbbb7d8f12bb703"},
+]
+certifi = [
+    {file = "certifi-2020.6.20-py2.py3-none-any.whl", hash = "sha256:8fc0819f1f30ba15bdb34cceffb9ef04d99f420f68eb75d901e9560b8749fc41"},
+    {file = "certifi-2020.6.20.tar.gz", hash = "sha256:5930595817496dd21bb8dc35dad090f1c2cd0adfaf21204bf6732ca5d8ee34d3"},
 ]
 click = [
     {file = "click-7.1.2-py2.py3-none-any.whl", hash = "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"},
@@ -381,7 +442,14 @@ emmett = [
     {file = "Emmett-2.1.0-py3-none-any.whl", hash = "sha256:65a4884cc81ce3ce89c8775c97bcfa4ff80ee9424160be7d507506f04b8ae752"},
     {file = "Emmett-2.1.0.tar.gz", hash = "sha256:bafc76fceac236e5bd9d8e2b9198c45f303749c2e1f379dfd19e457b94d3a7e5"},
 ]
-emmett-haml = []
+emmett-haml = [
+    {file = "Emmett-HAML-1.0.0.tar.gz", hash = "sha256:732e6d6c4838157aad606c621bc68d2dc8816ceb2e51e81826b1385cee4ad760"},
+    {file = "Emmett_HAML-1.0.0-py3-none-any.whl", hash = "sha256:0729dcf65848d35dd3c2e8d9b34df989e466c1276add7a3e7549336153365e4a"},
+]
+emmett-sentry = [
+    {file = "Emmett-Sentry-0.1.0.tar.gz", hash = "sha256:dfaa1182b6504fea27cb77f89384e38cdf0b8d88ee576422480bc9538e7b3a7b"},
+    {file = "Emmett_Sentry-0.1.0-py3-none-any.whl", hash = "sha256:94a71cd7f190ef6f9b53b099f5bda308f784ce2347d2b9ee8cd3e1ff7a5859f7"},
+]
 h11 = [
     {file = "h11-0.10.0-py2.py3-none-any.whl", hash = "sha256:9eecfbafc980976dbff26a01dd3487644dd5d00f8038584451fc64a660f7c502"},
     {file = "h11-0.10.0.tar.gz", hash = "sha256:311dc5478c2568cc07262e0381cdfc5b9c6ba19775905736c87e81ae6662b9fd"},
@@ -562,6 +630,10 @@ renoir-haml = [
     {file = "Renoir-HAML-1.0.0.tar.gz", hash = "sha256:338a98e84fbea1c8c07a8ce9f941bf3c0a28ece003b9614b6929459185ec3ecd"},
     {file = "Renoir_HAML-1.0.0-py3-none-any.whl", hash = "sha256:dacc329bbcecb8db8605ce6109fddffaf2cfb2b1279ca74ef396aa5d00169fd2"},
 ]
+sentry-sdk = [
+    {file = "sentry-sdk-0.19.0.tar.gz", hash = "sha256:a3716e98a1285a74eeaea7418a5b8fb2d7568fa11b5fba389946f465876a4d44"},
+    {file = "sentry_sdk-0.19.0-py2.py3-none-any.whl", hash = "sha256:0fc1d3d74f6262ab47c0debb52145c41b95d120917d4149d6d7c6357b37e2587"},
+]
 severus = [
     {file = "Severus-1.0.1-py3-none-any.whl", hash = "sha256:b4b773b3fe137588dbe91d18131a05e714b6c25735d823cc69991f14c66305ce"},
     {file = "Severus-1.0.1.tar.gz", hash = "sha256:ba3b621b8710e8abfc339674b8e6c36b6174dc7cf94f2dbe1d694fed88365a46"},
@@ -601,6 +673,10 @@ typing-extensions = [
     {file = "typing_extensions-3.7.4.3-py2-none-any.whl", hash = "sha256:dafc7639cde7f1b6e1acc0f457842a83e722ccca8eef5270af2d74792619a89f"},
     {file = "typing_extensions-3.7.4.3-py3-none-any.whl", hash = "sha256:7cb407020f00f7bfc3cb3e7881628838e69d8f3fcab2f64742a5e76b2f841918"},
     {file = "typing_extensions-3.7.4.3.tar.gz", hash = "sha256:99d4073b617d30288f569d3f13d2bd7548c3a7e4c8de87db09a9d29bb3a4a60c"},
+]
+urllib3 = [
+    {file = "urllib3-1.25.10-py2.py3-none-any.whl", hash = "sha256:e7983572181f5e1522d9c98453462384ee92a0be7fac5f1413a1e35c56cc0461"},
+    {file = "urllib3-1.25.10.tar.gz", hash = "sha256:91056c15fa70756691db97756772bb1eb9678fa585d9184f24534b100dc60f4a"},
 ]
 uvicorn = [
     {file = "uvicorn-0.12.1-py3-none-any.whl", hash = "sha256:d06a25caa8dc680ad92eb3ec67363f5281c092059613a1cc0100acba37fc0f45"},
