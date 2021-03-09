@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 WORKDIR /root
-RUN apt-get -qq update -y && apt-get -q install -y curl git
+RUN apt-get -qq update -y && apt-get -q install -y curl gcc git
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
 ENV PATH /root/.poetry/bin:$PATH
 RUN poetry config virtualenvs.in-project true

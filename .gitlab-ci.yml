@@ -5,7 +5,7 @@ stages:
 
 dist:
   stage: dist
-  image: python:3.7-alpine
+  image: python:3.9-alpine
   artifacts:
     paths:
       - build/dist/
