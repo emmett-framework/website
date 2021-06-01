@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM FROM docker.io/library/python:3.9-slim
 
 WORKDIR /root
 RUN apt-get -qq update -y && apt-get -q install -y curl gcc git
