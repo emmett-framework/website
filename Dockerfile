@@ -1,20 +1,19 @@
-FROM docker.io/library/python:3.9-slim
+FROM docker.io/library/python:3.9-slim as builder
 
-WORKDIR /root
 RUN apt-get -qq update -y && apt-get -q install -y curl gcc git
-RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python
-ENV PATH /root/.poetry/bin:$PATH
+RUN curl https://raw.githubusercontent.com/gi0baro/poetry-bin/master/install.sh | sh
 RUN poetry config virtualenvs.in-project true
 
-RUN mkdir -p /usr/src/deps
-COPY pyproject.toml /usr/src/deps
-COPY poetry.lock /usr/src/deps
-WORKDIR /usr/src/deps
+COPY pyproject.toml .
+COPY poetry.lock .
 RUN poetry install --no-dev
-ENV PATH /usr/src/deps/.venv/bin:$PATH
+
+FROM docker.io/library/python:3.9-slim
+
+COPY --from=builder /.venv /.venv
+ENV PATH /.venv/bin:$PATH
 
 WORKDIR /app
-
 COPY app app
 COPY build/dist/version/version.yml app/config/version.yml
 COPY build/dist/docs app/docs
