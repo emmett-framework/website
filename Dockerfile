@@ -1,14 +1,12 @@
-FROM docker.io/library/python:3.9-slim as builder
-
-RUN apt-get -qq update -y && apt-get -q install -y curl gcc git
-RUN curl https://raw.githubusercontent.com/gi0baro/poetry-bin/master/install.sh | sh
-RUN poetry config virtualenvs.in-project true
+FROM ghcr.io/gi0baro/poetry-bin:3.9 as builder
 
 COPY pyproject.toml .
 COPY poetry.lock .
-RUN poetry install --no-dev
 
-FROM docker.io/library/python:3.9-slim
+RUN poetry install --no-dev
+RUN poetry run pip install gunicorn
+
+FROM python:3.9-slim
 
 COPY --from=builder /.venv /.venv
 ENV PATH /.venv/bin:$PATH
@@ -20,5 +18,5 @@ COPY build/dist/docs app/docs
 
 EXPOSE 8000
 
-ENTRYPOINT [ "emmett" ]
-CMD [ "serve", "--no-access-log", "--max-concurrency", "512" ]
+ENTRYPOINT [ "gunicorn" ]
+CMD [ "app:app", "-w", "1", "-k", "emmett.asgi.workers.EmmettWorker" ]
