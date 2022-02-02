@@ -19,4 +19,4 @@ COPY build/dist/docs app/docs
 EXPOSE 8000
 
 ENTRYPOINT [ "gunicorn" ]
-CMD [ "app:app", "-w", "1", "-k", "emmett.asgi.workers.EmmettWorker" ]
+CMD [ "app:app", "-b", "0.0.0.0:8000", "-w", "1", "-k", "emmett.asgi.workers.EmmettWorker" ]
