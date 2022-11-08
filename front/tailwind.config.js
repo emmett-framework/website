@@ -1,12 +1,10 @@
-const { colors: { yellow, pink, ...colors } } = require('tailwindcss/defaultTheme')
-
 module.exports = {
+  darkMode: 'class',
   variants: {
     borderWidth: ['responsive', 'hover', 'focus'],
     visibility: ['responsive', 'group-hover']
   },
   theme: {
-    colors: colors,
     screens: {
       port: [
         {max: '779px'},
@@ -25,5 +23,9 @@ module.exports = {
         '2r': '0.5rem'
       }
     }
+  },
+  purge: {
+    enabled: process.env.NODE_ENV == "production",
+    content: ['../app/templates/**/*.haml'],
   }
 }

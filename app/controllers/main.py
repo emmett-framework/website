@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-
 from emmett import response
 
 from .. import app, cache
 from ..helpers.code_blocks import CodeBlocks
+
+private = app.module(__name__, "private", hostname=app.config.private_hostname)
 
 
 @app.on_error(404)
@@ -19,11 +19,11 @@ async def error_500():
 
 
 @app.route("/", injectors=[CodeBlocks()])
-@cache.response(query_params=False, language=False, duration=600)
+@cache.response(query_params=False, language=False, duration=None)
 async def index():
     return {"version": app.config.emmett_src.version}
 
 
-@app.route("/_health", output="bytes")
+@private.route("/_health", output="bytes")
 async def health():
     return b"ok"

@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 import os
 
 from emmett._internal import loop_open_file
@@ -18,7 +16,7 @@ def _build_filepath(version, name, parent=None):
     return os.path.join(*args)
 
 
-@cache('docs_versions', duration=60 * 60 * 24)
+@cache('docs_versions', duration=None)
 def get_versions():
     versions = []
     for name in os.listdir(_docs_path):
@@ -27,7 +25,7 @@ def get_versions():
     return sorted(versions, reverse=True)
 
 
-@cache('docs_lastv', duration=60 * 60 * 24)
+@cache('docs_lastv', duration=None)
 def get_latest_version():
     latest_version = max([
         float(".".join(v.split(".")[:-1])) for v in get_versions()
@@ -40,7 +38,7 @@ def is_page(version, name, parent=None):
     return os.path.exists(path)
 
 
-@cache('docs_content', duration=60 * 10)
+@cache('docs_content', duration=60 * 60 * 24)
 async def _get_content(version, name, parent=None):
     async with loop_open_file(
         _build_filepath(version, name, parent), 'rt'
@@ -49,7 +47,7 @@ async def _get_content(version, name, parent=None):
     return data
 
 
-@cache('docs_lines', duration=60 * 10)
+@cache('docs_lines', duration=60 * 60 * 24)
 async def _get_lines(version, name, parent=None):
     return (await _get_content(version, name, parent)).splitlines()
 
@@ -82,6 +80,7 @@ async def _get_subpages(version, parent, pages):
     return rv
 
 
+@cache('docs_tree', duration=None)
 async def build_tree(version):
     folder = os.path.join(_docs_path, version)
     if not os.path.exists(folder):

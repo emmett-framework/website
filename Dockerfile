@@ -1,22 +1,40 @@
-FROM ghcr.io/gi0baro/poetry-bin:3.9 as builder
+FROM ghcr.io/gi0baro/poetry-bin:3.10 as builder
 
 COPY pyproject.toml .
 COPY poetry.lock .
 
 RUN poetry install --no-dev
-RUN poetry run pip install gunicorn
 
-FROM python:3.9-slim
+FROM docker.io/library/node:16 as css
+
+COPY front wrk/front
+COPY app/templates wrk/app/templates
+WORKDIR /wrk/front
+
+ENV NODE_ENV production
+
+RUN npm ci --also=dev && npx tailwindcss -i src/tailwind.css -c tailwind.config.js -o dist/main.css --minify
+
+FROM python:3.10 as docs
+
+COPY build wrk/build
+WORKDIR /wrk/build
+
+RUN pip install pyyaml
+RUN python docs.py
+
+FROM python:3.10-slim
 
 COPY --from=builder /.venv /.venv
 ENV PATH /.venv/bin:$PATH
 
 WORKDIR /app
 COPY app app
-COPY build/dist/version/version.yml app/config/version.yml
-COPY build/dist/docs app/docs
+COPY --from=css /wrk/front/dist/main.css app/static/bundled/main.css
+COPY --from=docs /wrk/dist/version/version.yml app/config/version.yml
+COPY --from=docs /wrk/dist/docs app/docs
 
 EXPOSE 8000
 
-ENTRYPOINT [ "gunicorn" ]
-CMD [ "app:app", "-b", "0.0.0.0:8000", "-w", "1", "-k", "emmett.asgi.workers.EmmettWorker" ]
+ENTRYPOINT [ "emmett" ]
+CMD [ "serve", "--host", "0.0.0.0", "--workers", "1", "--threads", "2" ]

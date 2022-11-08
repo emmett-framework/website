@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from emmett import abort, asis, redirect, url
 from emmett.validators.process import Urlify
 
@@ -25,7 +23,7 @@ async def index():
 
 
 @docs.route("/<str:version>")
-@cache.response(query_params=False, language=False, duration=60 * 60 * 24)
+@cache.response(query_params=False, language=False, duration=None)
 async def tree(version):
     if version == 'latest':
         redirect(url('.tree', get_latest_version()))
@@ -52,7 +50,7 @@ async def tree(version):
 
 
 @docs.route("/<str:version>/<str:key>(/<str:subkey>)?")
-@cache.response(query_params=False, language=False, duration=60 * 60)
+@cache.response(query_params=False, language=False, duration=None)
 async def page(version, key, subkey):
     if version == 'latest':
         vlast = get_latest_version()

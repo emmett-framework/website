@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --color-a: #2b6cb0;
+}
+:root.dark {
+    --color-a: #63b3ed;
+}
+
 body {
     @apply font-light;
 }
@@ -23,7 +30,8 @@ h4 {
 }
 
 a {
-    @apply font-normal text-blue-700;
+    @apply font-normal;
+    color: var(--color-a);
 }
 
 code {
@@ -87,5 +95,18 @@ pre code {
 }
 
 .docs pre code {
-    @apply mb-4 px-4 py-6 bg-blue-900;
+    @apply mb-4 px-4 py-6;
+    background-color: #2a4365;
+}
+
+.dark .docs blockquote {
+    @apply bg-gray-800 border-gray-600;
+}
+
+.dark .docs code {
+    @apply bg-gray-700;
+}
+
+.dark .docs pre code {
+    background-color: #21334f;
 }
