@@ -1,4 +1,4 @@
-FROM ghcr.io/gi0baro/poetry-bin:3.10 as builder
+FROM ghcr.io/gi0baro/poetry-bin:3.10-1.3 as builder
 
 COPY pyproject.toml .
 COPY poetry.lock .
@@ -37,4 +37,4 @@ COPY --from=docs /wrk/dist/docs app/docs
 EXPOSE 8000
 
 ENTRYPOINT [ "emmett" ]
-CMD [ "serve", "--host", "0.0.0.0", "--workers", "1", "--threads", "2" ]
+CMD [ "serve", "--host", "0.0.0.0" ]

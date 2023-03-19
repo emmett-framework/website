@@ -6,7 +6,7 @@ authors = ["Giovanni Barillari <gi0baro@d4net.org>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-emmett = { git = "https://github.com/emmett-framework/emmett.git", rev = "bb7effe" }
+emmett = { git = "https://github.com/emmett-framework/emmett.git", rev = "8c270a3" }
 emmett-haml = "~1.0"
 emmett-sentry = "~0.1"
 markdown2 = "~2.3.8"

@@ -1,0 +1,68 @@
+stages:
+  - build
+  # - deploy
+
+variables:
+  DOCKER_DRIVER: overlay2
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+services:
+  - docker:19.03-dind
+
+# dist:
+#   stage: dist
+#   image: python:3.10-alpine
+#   artifacts:
+#     paths:
+#       - build/dist/
+#   before_script:
+#     - apk add --no-cache git
+#     - pip install pyyaml
+#   script:
+#     - python build/docs.py
+#   only:
+#     refs:
+#       - master
+
+build_and_publish:
+  stage: build
+  image: docker:19.03
+  variables:
+    CONTAINER_IMAGE: $CI_REGISTRY_IMAGE
+  before_script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+  script:
+    - >-
+        docker build
+        --file Dockerfile
+        --tag $CONTAINER_IMAGE:$CI_COMMIT_SHORT_SHA
+        --tag $CONTAINER_IMAGE:latest
+        .
+    - docker push $CONTAINER_IMAGE:$CI_COMMIT_SHORT_SHA
+    - docker push $CONTAINER_IMAGE:latest
+  only:
+    refs:
+      - master
+
+# deploy:
+#   stage: deploy
+#   image: alpine/helm:latest
+#   variables:
+#     KUBECONFIG: .kube_config.yml
+#   script:
+#     - echo $KUBECONF | base64 -D > .kube_config.yml
+#     - helm repo add gi0baro https://gi0baro.github.io/helm-charts
+#     - >-
+#         helm upgrade --install website
+#         --atomic
+#         --namespace emmett-sh
+#         --set-string image.tag=$CI_COMMIT_SHORT_SHA
+#         --set-string secrets.sentry_dsn=$K8S_ENV_SENTRY_DSN
+#         gi0baro/generic
+#   environment:
+#     name: production
+#     url: https://emmett.sh
+#   only:
+#     refs:
+#       - master
