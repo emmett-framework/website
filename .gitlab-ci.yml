@@ -51,7 +51,7 @@ deploy:
   variables:
     KUBECONFIG: .kube_config.yml
   script:
-    - echo $KUBECONF | base64 -D > .kube_config.yml
+    - echo $KUBECONF | base64 -d > .kube_config.yml
     - helm repo add gi0baro https://gi0baro.github.io/helm-charts
     - >-
         helm upgrade --install website

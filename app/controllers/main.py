@@ -3,7 +3,9 @@ from emmett import response
 from .. import app, cache
 from ..helpers.code_blocks import CodeBlocks
 
-private = app.module(__name__, "private", hostname=app.config.private_hostname)
+private = app.module(
+    __name__, "private", hostname=f"{app.config.private_hostname}:8000"
+)
 
 
 @app.on_error(404)
