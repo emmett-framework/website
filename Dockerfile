@@ -31,8 +31,8 @@ ENV PATH /.venv/bin:$PATH
 WORKDIR /app
 COPY app app
 COPY --from=css /wrk/front/dist/main.css app/static/bundled/main.css
-COPY --from=docs /wrk/dist/version/version.yml app/config/version.yml
-COPY --from=docs /wrk/dist/docs app/docs
+COPY --from=docs /wrk/build/dist/version/version.yml app/config/version.yml
+COPY --from=docs /wrk/build/dist/docs app/docs
 
 EXPOSE 8000
 
