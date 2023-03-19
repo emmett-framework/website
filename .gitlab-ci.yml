@@ -57,6 +57,7 @@ deploy:
         helm upgrade --install website
         --atomic
         --namespace emmett-sh
+        --values helm/values.yaml
         --set-string image.tag=$CI_COMMIT_SHORT_SHA
         --set-string secrets.sentry_dsn=$K8S_ENV_SENTRY_DSN
         gi0baro/generic
