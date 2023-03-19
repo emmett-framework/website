@@ -1,6 +1,6 @@
 stages:
   - build
-  # - deploy
+  - deploy
 
 variables:
   DOCKER_DRIVER: overlay2
@@ -45,24 +45,24 @@ build_and_publish:
     refs:
       - master
 
-# deploy:
-#   stage: deploy
-#   image: alpine/helm:latest
-#   variables:
-#     KUBECONFIG: .kube_config.yml
-#   script:
-#     - echo $KUBECONF | base64 -D > .kube_config.yml
-#     - helm repo add gi0baro https://gi0baro.github.io/helm-charts
-#     - >-
-#         helm upgrade --install website
-#         --atomic
-#         --namespace emmett-sh
-#         --set-string image.tag=$CI_COMMIT_SHORT_SHA
-#         --set-string secrets.sentry_dsn=$K8S_ENV_SENTRY_DSN
-#         gi0baro/generic
-#   environment:
-#     name: production
-#     url: https://emmett.sh
-#   only:
-#     refs:
-#       - master
+deploy:
+  stage: deploy
+  image: alpine/helm:latest
+  variables:
+    KUBECONFIG: .kube_config.yml
+  script:
+    - echo $KUBECONF | base64 -D > .kube_config.yml
+    - helm repo add gi0baro https://gi0baro.github.io/helm-charts
+    - >-
+        helm upgrade --install website
+        --atomic
+        --namespace emmett-sh
+        --set-string image.tag=$CI_COMMIT_SHORT_SHA
+        --set-string secrets.sentry_dsn=$K8S_ENV_SENTRY_DSN
+        gi0baro/generic
+  environment:
+    name: production
+    url: https://emmett.sh
+  only:
+    refs:
+      - master

@@ -1,4 +1,4 @@
-nameOverride: emmett-website
+nameOverride: website
 
 image:
   repository: cr.amira.io/emmett/website
