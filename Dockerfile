@@ -3,6 +3,7 @@ FROM ghcr.io/gi0baro/poetry-bin:3.10-1.3 as builder
 COPY pyproject.toml .
 COPY poetry.lock .
 
+RUN ls -la /usr/bin
 RUN poetry install --no-dev
 
 FROM docker.io/library/node:16 as css
