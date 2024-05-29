@@ -1,11 +1,11 @@
-FROM ghcr.io/gi0baro/poetry-bin:3.10-1.3 as builder
+FROM ghcr.io/gi0baro/poetry-bin:3.11-1.3 as builder
 
 COPY pyproject.toml .
 COPY poetry.lock .
 
 RUN poetry install --no-dev
 
-FROM docker.io/library/node:16 as css
+FROM node:16 as css
 
 COPY front wrk/front
 COPY app/templates wrk/app/templates
@@ -15,7 +15,7 @@ ENV NODE_ENV production
 
 RUN npm ci --also=dev && npx tailwindcss -i src/tailwind.css -c tailwind.config.js -o dist/main.css --minify
 
-FROM python:3.10 as docs
+FROM python:3.11 as docs
 
 COPY build wrk/build
 WORKDIR /wrk/build
@@ -23,7 +23,7 @@ WORKDIR /wrk/build
 RUN pip install pyyaml
 RUN python docs.py
 
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 COPY --from=builder /.venv /.venv
 ENV PATH /.venv/bin:$PATH
