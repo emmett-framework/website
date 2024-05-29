@@ -1,13 +1,13 @@
 - meta_title = "Emmett - the web framework for inventors"
 - meta_description = "Emmett is a full-stack Python web framework designed with simplicity in mind"
-- meta_image = "https://deneb.spaces.amira.io/emmett/artwork/logo-bwb-wb-sc.png"
+- meta_image = "{{ =url('static', 'img/logo-bwb-wb-sc.png') }}"
 
 - quickstart_url = url('docs.page', ['latest', 'quickstart'])
 
 - extend "layout.haml"
 
 .home-logo.w-full.mb-4.px-auto
-    %img.mx-auto{src: "https://deneb.spaces.amira.io/emmett/artwork/logo-bwb-xb-xl.png"}
+    %img.mx-auto{src: "{{ =url('static', 'img/logo-bwb-xb-xl.png') }}"}
 
 - include "index/_nutshell.haml"
 - include "index/_async.haml"
