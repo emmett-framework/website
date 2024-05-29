@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v3
+      - id: build_version
+        run: |
+          echo "build_version=$(echo ${GITHUB_SHA} | cut -c1-12)" >> $GITHUB_ENV
+      - name: Log in to the Container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build image
+        uses: docker/build-push-action@v3
+        with:
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ env.build_version }},${{ env.REGISTRY }}/${{ github.repository }}:latest
+          context: "."
+          file: Dockerfile
+          push: true
+          build-args: |
+            DEPS_FLAGS=--no-dev
+
+  # deploy:
+  #   runs-on: ubuntu-latest
