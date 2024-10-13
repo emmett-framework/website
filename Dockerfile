@@ -1,4 +1,4 @@
-FROM ghcr.io/gi0baro/poetry-bin:3.11-1.3 as builder
+FROM ghcr.io/gi0baro/poetry-bin:3.11 as builder
 
 COPY pyproject.toml .
 COPY poetry.lock .
