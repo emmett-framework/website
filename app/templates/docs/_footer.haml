@@ -1,12 +1,13 @@
 %footer.nav-footer.flex.flex-wrap.w-full.h-8.px-6.py-1.border-t.border-gray-300.fixed.bottom-0.z-10.text-sm.bg-gray-50.bg-opacity-90{class: "dark:text-gray-400 dark:bg-gray-900 dark:border-gray-700"}
-    - if prev
-        .flex.flex-grow.text-left
-            - u = url('.page', [prev[3], prev[1]]) if not prev[2] else url('.page', [prev[3], prev[2], prev[1]])
-            %a{href: "{{=u}}"}
-                = "< "+prev[0]
+    .container.flex.flex-wrap.mx-auto
+        - if prev
+            .flex.flex-grow.text-left
+                - u = url('.page', [prev[3], prev[1]]) if not prev[2] else url('.page', [prev[3], prev[2], prev[1]])
+                %a{href: "{{=u}}"}
+                    = "< "+prev[0]
 
-    - if after
-        .flex.text-right
-            - u = url('.page', [after[3], after[1]]) if not after[2] else url('.page', [after[3], after[2], after[1]])
-            %a{href: "{{=u}}"}
-                = after[0]+" >"
+        - if after
+            .flex.text-right
+                - u = url('.page', [after[3], after[1]]) if not after[2] else url('.page', [after[3], after[2], after[1]])
+                %a{href: "{{=u}}"}
+                    = after[0]+" >"
