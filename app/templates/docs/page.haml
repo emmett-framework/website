@@ -17,12 +17,13 @@
 - end
 
 .py-6
-    .w-full.flex.flex-wrap.px-6.pb-16
-        %div.docs.font-ssp.text-lg{class: "port:w-full land:w-4/5 land:pr-3"}
-            = body
-        %div{class: "port:hidden land:w-1/5 land:pl-3"}
-            %ul{class: "fixed w-1/6"}
-                - for sub in sections
-                    %li
-                        %a{href: "{{ ='#' + sub[1] }}"}
-                            = sub[0]
+    .container.flex.flex-wrap.mx-auto
+        .w-full.flex.flex-wrap.px-6.pb-16
+            %div.docs.font-ssp.text-lg{class: "port:w-full land:w-4/5 land:pr-3"}
+                = body
+            %div{class: "port:hidden land:w-1/5 land:pl-3"}
+                %ul{class: "fixed w-1/6"}
+                    - for sub in sections
+                        %li
+                            %a{href: "{{ ='#' + sub[1] }}"}
+                                = sub[0]

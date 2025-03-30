@@ -1,21 +1,22 @@
-FROM ghcr.io/gi0baro/poetry-bin:3.11 as builder
+FROM python:3.10 AS builder
 
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 COPY pyproject.toml .
-COPY poetry.lock .
+COPY uv.lock .
 
-RUN poetry install --no-dev
+RUN uv sync
 
-FROM node:16 as css
+FROM node:16 AS css
 
 COPY front wrk/front
 COPY app/templates wrk/app/templates
 WORKDIR /wrk/front
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 
 RUN npm ci --also=dev && npx tailwindcss -i src/tailwind.css -c tailwind.config.js -o dist/main.css --minify
 
-FROM python:3.11 as docs
+FROM python:3.10 AS docs
 
 COPY build wrk/build
 WORKDIR /wrk/build
@@ -23,10 +24,10 @@ WORKDIR /wrk/build
 RUN pip install pyyaml
 RUN python docs.py
 
-FROM python:3.11-slim
+FROM python:3.10-slim
 
 COPY --from=builder /.venv /.venv
-ENV PATH /.venv/bin:$PATH
+ENV PATH=/.venv/bin:$PATH
 
 WORKDIR /app
 COPY app app

@@ -1,17 +1,20 @@
-[tool.poetry]
+[project]
 name = "emmett-website"
 version = "0.1.0"
 description = ""
-authors = ["Giovanni Barillari <g@baro.dev>"]
+readme = "README.md"
+requires-python = "~=3.10.0"
 
-[tool.poetry.dependencies]
-python = "^3.11"
-emmett = "~2.5.2"
-emmett-haml = "~1.0"
-emmett-sentry = "~0.6.0"
-markdown2 = "~2.3.8"
-pygments = "~2.6.1"
+dependencies = [
+    "emmett[uvloop]~=2.7.0",
+    "emmett-haml~=1.0",
+    "emmett-sentry~=0.8.1",
+    "markdown2~=2.3.8",
+    "pygments~=2.6.1",
+]
 
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[tool.uv.sources]
+emmett = { git = "https://github.com/emmett-framework/emmett", rev = "8f35c8b" }
+
+[tool.uv]
+prerelease = "allow"
