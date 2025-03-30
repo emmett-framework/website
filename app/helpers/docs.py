@@ -1,6 +1,6 @@
 import os
 
-from emmett._internal import loop_open_file
+from emmett_core._io import loop_open_file
 from yaml import SafeLoader as ymlLoader, load as ymlload
 from markdown2 import markdown
 
