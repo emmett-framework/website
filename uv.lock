@@ -108,15 +108,15 @@ wheels = [
 
 [[package]]
 name = "emmett-sentry"
-version = "0.8.1"
+version = "0.8.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "emmett-core" },
     { name = "sentry-sdk" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/86/f3/b6b5ed3d099a9293b57bb90b8ec01b32f9546e4683070d8cbddf96f3ae85/emmett_sentry-0.8.1.tar.gz", hash = "sha256:a79c2bd45779c6e7a0cadbef1be6f33c05f85528d2ce706003f1af72488d58ec", size = 7262 }
+sdist = { url = "https://files.pythonhosted.org/packages/ce/d5/f1df3d68c087f3c1917b016747449b1d04cb8d36eef2cdf45a4b329972ac/emmett_sentry-0.8.2.tar.gz", hash = "sha256:8886a683923623b600d2567aafcaaa3de84de00f9d250c972094f232f3ca01dc", size = 7319 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e9/3a/277173fa870f3767f6a945b6eac7645568b0f3ab3f4835a10a17bb648969/emmett_sentry-0.8.1-py3-none-any.whl", hash = "sha256:6f613655f2ea84da2d7999894e3be4361dd3ca2d2704ce2bab003bfa849978db", size = 8622 },
+    { url = "https://files.pythonhosted.org/packages/27/a9/4cd855065522ff178c22b92a971d321ca9063a1ddb360d8dd15adb919d3b/emmett_sentry-0.8.2-py3-none-any.whl", hash = "sha256:4986feb00d30b9da1fd2c33263ea0d7ff1037c93d7ebdd3f2b91ce2909517100", size = 8684 },
 ]
 
 [[package]]
@@ -135,7 +135,7 @@ dependencies = [
 requires-dist = [
     { name = "emmett", extras = ["uvloop"], git = "https://github.com/emmett-framework/emmett?rev=8f35c8b" },
     { name = "emmett-haml", specifier = "~=1.0" },
-    { name = "emmett-sentry", specifier = "~=0.8.1" },
+    { name = "emmett-sentry", specifier = "~=0.8.2" },
     { name = "markdown2", specifier = "~=2.3.8" },
     { name = "pygments", specifier = "~=2.6.1" },
 ]
