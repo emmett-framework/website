@@ -38,7 +38,7 @@ wheels = [
 [[package]]
 name = "emmett"
 version = "2.7.0"
-source = { git = "https://github.com/emmett-framework/emmett?rev=70a2f1e#70a2f1ed0f383be14b428bf93d73a6a50ee09ca1" }
+source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
     { name = "emmett-core", extra = ["granian", "rapidjson"] },
@@ -47,6 +47,10 @@ dependencies = [
     { name = "pyyaml" },
     { name = "renoir" },
     { name = "severus" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/b1/47/6e43d76122fe941413c43a914ab2dba02968487593d5c439b7039e6ade1c/emmett-2.7.0.tar.gz", hash = "sha256:6de7c7338a039e99d93755a213352ccdb7959cea27b6ba1ca4eaad636c242c7c", size = 363026 }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/54/ad/ac828088e764858c91020e61374f36b990caaad13af851cf1f00b8fe3d98/emmett-2.7.0-py3-none-any.whl", hash = "sha256:1e8b4e34cc0f568945ee46ef58b84c8315330155b98d669333b63b69370580c6", size = 265313 },
 ]
 
 [package.optional-dependencies]
@@ -133,7 +137,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "emmett", extras = ["uvloop"], git = "https://github.com/emmett-framework/emmett?rev=70a2f1e" },
+    { name = "emmett", extras = ["uvloop"], specifier = "~=2.7.0" },
     { name = "emmett-haml", specifier = "~=1.0" },
     { name = "emmett-sentry", specifier = "~=0.8.2" },
     { name = "markdown2", specifier = "~=2.3.8" },

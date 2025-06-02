@@ -13,8 +13,5 @@ dependencies = [
     "pygments~=2.6.1",
 ]
 
-[tool.uv.sources]
-emmett = { git = "https://github.com/emmett-framework/emmett", rev = "70a2f1e" }
-
 [tool.uv]
 prerelease = "allow"
