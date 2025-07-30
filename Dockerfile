@@ -1,4 +1,4 @@
-FROM python:3.10 AS builder
+FROM python:3.13 AS builder
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 COPY pyproject.toml .
@@ -16,7 +16,9 @@ ENV NODE_ENV=production
 
 RUN npm ci --also=dev && npx tailwindcss -i src/tailwind.css -c tailwind.config.js -o dist/main.css --minify
 
-FROM python:3.10 AS docs
+FROM python:3.13-slim AS docs
+
+RUN apt-get update -y && apt-get install -y git
 
 COPY build wrk/build
 WORKDIR /wrk/build
@@ -24,7 +26,7 @@ WORKDIR /wrk/build
 RUN pip install pyyaml
 RUN python docs.py
 
-FROM python:3.10-slim
+FROM python:3.13-slim
 
 COPY --from=builder /.venv /.venv
 ENV PATH=/.venv/bin:$PATH
