@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = "~=3.13.0"
 
 dependencies = [
-    "emmett[rloop]~=2.7.0",
+    "emmett[rloop]~=2.8.1",
     "emmett-haml~=1.0",
     "emmett-sentry~=0.8.2",
     "markdown2~=2.3.8",
