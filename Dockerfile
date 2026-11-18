@@ -1,4 +1,4 @@
-FROM python:3.13 AS builder
+FROM python:3.14 AS builder
 
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 COPY pyproject.toml .
@@ -16,7 +16,7 @@ ENV NODE_ENV=production
 
 RUN npm ci --also=dev && npx tailwindcss -i src/tailwind.css -c tailwind.config.js -o dist/main.css --minify
 
-FROM python:3.13-slim AS docs
+FROM python:3.14-slim AS docs
 
 RUN apt-get update -y && apt-get install -y git
 
@@ -26,7 +26,7 @@ WORKDIR /wrk/build
 RUN pip install pyyaml
 RUN python docs.py
 
-FROM python:3.13-slim
+FROM python:3.14-slim
 
 COPY --from=builder /.venv /.venv
 ENV PATH=/.venv/bin:$PATH
@@ -40,4 +40,4 @@ COPY --from=docs /wrk/build/dist/docs app/docs
 EXPOSE 8000
 
 ENTRYPOINT [ "emmett" ]
-CMD [ "serve", "--host", "0.0.0.0" ]
+CMD [ "serve", "--host", "0.0.0.0", "--http", "1", "--no-ws", "--runtime-mode", "mt", "--threads", "2" ]
